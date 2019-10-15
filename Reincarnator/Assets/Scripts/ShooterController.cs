@@ -9,6 +9,7 @@ public class ShooterController : MonoBehaviour
 
 
     private float timeStamp;
+    
     // Start is called before the first frame update
     void Start()
     {
