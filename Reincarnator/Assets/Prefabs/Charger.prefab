@@ -144,4 +144,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0.5
   speed: 300
-  player: {fileID: 0}
+  player: {fileID: 4324668374279756970, guid: 7281f5843162de34e98528f95aa6504d, type: 3}

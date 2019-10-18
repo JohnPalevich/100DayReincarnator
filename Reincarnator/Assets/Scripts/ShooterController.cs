@@ -6,21 +6,23 @@ public class ShooterController : MonoBehaviour
 {
     public int cooldown;
     public GameObject player;
-
+    public GameObject bullet;
 
     private float timeStamp;
-    
-    // Start is called before the first frame update
+    private Rigidbody2D rb2d;
+    private bool shot;
+
     void Start()
     {
+        rb2d = GetComponent<Rigidbody2D>();
         timeStamp = 0;
-
+        shot = false;
+        rb2d.freezeRotation = true;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if (timeStamp <= Time.time)
+        if (timeStamp <= Time.time && shot == false)
         {
             Shoot();   
         }
@@ -29,6 +31,8 @@ public class ShooterController : MonoBehaviour
     private void Shoot()
     {
         timeStamp = Time.time + cooldown;
-
+        shot = true;
+        Vector3 spawnLoc = transform.position;
+        Instantiate(bullet);
     }
 }

@@ -6,17 +6,20 @@ public class BulletController : MonoBehaviour
 {
     public GameObject player;
     public int speed;
-    // Start is called before the first frame update
+
     void Start()
     {
         Vector2 playerPos = new Vector2(player.transform.position.x,  player.transform.position.y);
-        transform.rotation = Quaternion.LookRotation(playerPos);
-
+        transform.LookAt(player.transform);
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        transform.position += transform.right * speed * Time.deltaTime;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       
     }
 }

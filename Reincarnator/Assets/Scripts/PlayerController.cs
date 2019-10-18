@@ -43,10 +43,18 @@ public class PlayerController : MonoBehaviour
             health -= 1;
             SetLifeText();
             rb2d.AddForce(collision.relativeVelocity * knockback );
-            if (health <= 0)
-            {
-                gameObject.SetActive(false);
-            }
+        }
+        else if (collision.gameObject.CompareTag("Bullet"))
+        {
+            health -= 1;
+            SetLifeText();
+            Vector2 knockback = collision.relativeVelocity;
+            rb2d.AddForce(knockback);
+
+        }
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 
