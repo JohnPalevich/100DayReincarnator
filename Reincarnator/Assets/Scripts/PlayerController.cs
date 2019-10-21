@@ -44,13 +44,13 @@ public class PlayerController : MonoBehaviour
             SetLifeText();
             rb2d.AddForce(collision.relativeVelocity * knockback );
         }
-        else if (collision.gameObject.CompareTag("Bullet"))
+        else if (collision.gameObject.CompareTag("Bullets"))
         {
             health -= 1;
             SetLifeText();
-            Vector2 knockback = collision.relativeVelocity;
-            rb2d.AddForce(knockback);
-
+            Vector2 knock = collision.relativeVelocity.normalized;
+            rb2d.AddForce(knock);
+            Destroy(collision.gameObject);
         }
         if (health <= 0)
         {

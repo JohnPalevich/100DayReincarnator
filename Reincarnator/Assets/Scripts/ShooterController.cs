@@ -10,19 +10,17 @@ public class ShooterController : MonoBehaviour
 
     private float timeStamp;
     private Rigidbody2D rb2d;
-    private bool shot;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         timeStamp = 0;
-        shot = false;
         rb2d.freezeRotation = true;
     }
 
     void FixedUpdate()
     {
-        if (timeStamp <= Time.time && shot == false)
+        if (timeStamp <= Time.time)
         {
             Shoot();   
         }
@@ -31,8 +29,8 @@ public class ShooterController : MonoBehaviour
     private void Shoot()
     {
         timeStamp = Time.time + cooldown;
-        shot = true;
-        Vector3 spawnLoc = transform.position;
-        Instantiate(bullet);
+        Vector3 pos = new Vector3(5, 0);
+        var myNewBullet = Instantiate(bullet, pos, transform.rotation);
+        myNewBullet.transform.parent = gameObject.transform;
     }
 }
