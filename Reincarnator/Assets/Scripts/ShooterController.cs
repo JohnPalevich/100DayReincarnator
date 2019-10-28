@@ -45,19 +45,23 @@ public class ShooterController : MonoBehaviour
 
     private void CreateBullet(Vector3 pos)
     {
-        //Points the projectile towards the player object.
-        Vector3 diff = player.transform.position - pos;
-        diff.Normalize();
-        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-
-        var myNewBullet = Instantiate(bullet, pos, Quaternion.Euler(0f, 0f, rot_z - 12));
+        //Creates new bullet and sets it's parent to this object
+        var myNewBullet = Instantiate(bullet, pos, Quaternion.Euler(0f, 0f, 0f));
         myNewBullet.transform.parent = gameObject.transform;
 
         //Initialized bullet's rigidbody, and gives it a direction to move in.
         Rigidbody2D rb2d = myNewBullet.GetComponent<Rigidbody2D>();
-        Vector2 movement = DistToPlayer(pos);
-        movement.Normalize();
-        rb2d.AddForce(movement * 100 * bulletSpeed);
+        Vector2 dist = DistToPlayer(pos);
+        dist.Normalize();
+        rb2d.AddForce(dist * 100 * bulletSpeed);
+
+        //Points the projectile towards the player object.
+        Vector2 moveDirection = dist;
+        if (moveDirection != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+            myNewBullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 
     private Vector2 DistToPlayer(Vector3 pos)
