@@ -47,7 +47,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 494}
   m_MaxSize: {x: 14004, y: 14044}
   vertical: 0
-  controlID: 122
+  controlID: 124
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 494}
   m_MaxSize: {x: 10002, y: 14044}
   vertical: 1
-  controlID: 56
+  controlID: 79
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -337,20 +337,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Sprites/Basic Assets
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 80
   m_LastFolders:
-  - Assets/Sprites/Basic Assets
+  - Assets/Scripts
   m_LastFoldersGridSize: 80
   m_LastProjectPath: C:\Users\s-palevichj\Documents\GitHub\100DayReincarnator\Reincarnator
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 462e0000
-    m_LastClickedID: 11846
-    m_ExpandedIDs: 00000000a02c0000c22d000000ca9a3b
+    m_SelectedIDs: 2a2d0000
+    m_LastClickedID: 11562
+    m_ExpandedIDs: 00000000a02c0000082d0000c22d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -501,7 +501,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 0e300000
       m_LastClickedID: 12302
-      m_ExpandedIDs: 78fbffffe22f0000ee2f000040300000
+      m_ExpandedIDs: 78fbffffda2f0000e22f0000ee2f000040300000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -561,9 +561,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 3.0793324, y: -2.4716964, z: -986.28986}
+    m_Target: {x: 0.061245248, y: 0.463689, z: -996.9095}
     speed: 2
-    m_Value: {x: 3.0793324, y: -2.4716964, z: -986.28986}
+    m_Value: {x: 0.061245248, y: 0.463689, z: -996.9095}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -596,9 +596,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 20.852493
+    m_Target: 13.468693
     speed: 2
-    m_Value: 20.852493
+    m_Value: 13.468693
   m_Ortho:
     m_Target: 1
     speed: 2
