@@ -18,17 +18,18 @@ public class BoardManager : MonoBehaviour
         }
     }
     //Level Dimensions
-    public int columns = 23;
-    public int rows = 9;
+    public int columns = 24;
+    public int rows = 10;
 
     //# of  all Objects
     public Count wallCount = new Count(4, 10);
-    public Count coinCount = new Count(4, 6);
+    public Count pickUpCount = new Count(4, 6);
 
     //Objects to hold prefabs
     public GameObject[] floorTiles;
+    public GameObject[] pickUpTiles;
     public GameObject[] wallTiles;
-    public GameObject[] enemies;
+    public GameObject[] enemyTiles;
     public GameObject[] outerWallTiles;
 
     private Transform boardHolder;
@@ -77,17 +78,25 @@ public class BoardManager : MonoBehaviour
         return randPos;
     }
 
-    //10:30 in vid: https://learn.unity.com/tutorial/level-generation?projectId=5c514a00edbc2a0020694718#5c7f8528edbc2a002053b6f6
-
-    // Start is called before the first frame update
-    void Start()
+    void LayoutObjectAtRandomPos(GameObject[] tileArr, int min, int max)
     {
-        
+        int objCount = Random.Range(min, max + 1);
+        for(int i = 0; i < objCount; i++)
+        {
+            Vector3 randPos = RandomPosition();
+            GameObject tile = tileArr[Random.Range(0, tileArr.Length)];
+            Instantiate(tile, randPos, Quaternion.identity);
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetUpScene(int level)
     {
-        
+        BoardSetup();
+        InitializeList();
+        LayoutObjectAtRandomPos(wallTiles, wallCount.minimum, wallCount.maximum);
+        LayoutObjectAtRandomPos(pickUpTiles, pickUpCount.minimum, pickUpCount.maximum);
+        int numEnemies = (int)Mathf.Log(level, 2f);
+        LayoutObjectAtRandomPos(enemyTiles, numEnemies, numEnemies );
     }
 }
