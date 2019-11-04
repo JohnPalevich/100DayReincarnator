@@ -31,6 +31,7 @@ public class BoardManager : MonoBehaviour
     public GameObject[] wallTiles;
     public GameObject[] enemyTiles;
     public GameObject[] outerWallTiles;
+    public GameObject player;
 
     private Transform boardHolder;
     private List<Vector3> gridPositions = new List<Vector3>();
@@ -90,12 +91,26 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    void LayoutEnemies(GameObject[] tileArr, int min, int max)
+    {
+        int objCount = Random.Range(min, max + 1);
+        for (int i = 0; i < objCount; i++)
+        {
+            Vector3 randPos = RandomPosition();
+            GameObject tile = tileArr[Random.Range(0, tileArr.Length)];
+            GameObject enemy = Instantiate(tile, randPos, Quaternion.identity);
+            //enemy.player = player;
+        }
+    }
+
     public void SetUpScene(int level)
     {
         BoardSetup();
         InitializeList();
         LayoutObjectAtRandomPos(wallTiles, wallCount.minimum, wallCount.maximum);
         LayoutObjectAtRandomPos(pickUpTiles, pickUpCount.minimum, pickUpCount.maximum);
+        Vector3 randPos = RandomPosition();
+        Instantiate(player, randPos, Quaternion.identity);
         int numEnemies = (int)Mathf.Log(level, 2f);
         LayoutObjectAtRandomPos(enemyTiles, numEnemies, numEnemies );
     }

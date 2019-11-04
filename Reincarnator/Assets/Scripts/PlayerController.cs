@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController player = null;
     public float speed;
     public float knockback;
     public Text coinText;
@@ -13,6 +14,14 @@ public class PlayerController : MonoBehaviour
     private int coins;
     private int health;
     void Start(){
+        if(player == null)
+        {
+            player = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
         rb2d = GetComponent<Rigidbody2D>();
         coins = 0;
         health = 30;

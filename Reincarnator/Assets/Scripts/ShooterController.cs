@@ -16,6 +16,7 @@ public class ShooterController : MonoBehaviour
 
     void Start()
     {
+        player = PlayerController.player.gameObject;
         rb2d = GetComponent<Rigidbody2D>();
         timeStamp = 0;
         rb2d.freezeRotation = true;

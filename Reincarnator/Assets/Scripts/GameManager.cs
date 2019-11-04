@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public BoardManager boardScript;
+    public static GameManager instance = null; 
+    private BoardManager boardScript;
+    public GameObject player;
+    public CameraController camera;
 
     private int level = 3;
-    //https://learn.unity.com/tutorial/level-generation?projectId=5c514a00edbc2a0020694718#5c7f8528edbc2a002053b6f7 4:00 left off
     void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if(instance != this)
+        {
+            Destroy(gameObject);
+        }
+        
+        DontDestroyOnLoad(gameObject);
         boardScript = GetComponent<BoardManager>();
         InitGame();
     }
@@ -17,6 +29,10 @@ public class GameManager : MonoBehaviour
     void InitGame()
     {
         boardScript.SetUpScene(level);
+        player = boardScript.player;
+        CameraController.camera.player = player;
+        CameraController.camera.setOffset();
+
     }
 
     // Update is called once per frame

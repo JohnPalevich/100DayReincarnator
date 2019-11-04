@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1405302218186396603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1405302218186396600}
+  - component: {fileID: 1405302218186396614}
+  - component: {fileID: 1405302218186396601}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1405302218186396600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405302218186396603}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.061245248, y: 0.463689, z: -996.9095}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1405302218186396614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405302218186396603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8edae9f6d06d06842be75c2df321ae55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!114 &1405302218186396601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405302218186396603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37434bedb2926e446a658fc2b3fa2f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  columns: 24
+  rows: 10
+  wallCount:
+    minimum: 3
+    maximum: 10
+  pickUpCount:
+    minimum: 4
+    maximum: 6
+  floorTiles:
+  - {fileID: 2121810441649979342, guid: c89d7a9dc4a667c428aab34690e40e71, type: 3}
+  pickUpTiles:
+  - {fileID: 3612701078990757251, guid: 718487c593bbc9c4ca4955ea73db5038, type: 3}
+  wallTiles:
+  - {fileID: 4810953817352861897, guid: 6c021ed798171304b88d8804689ce582, type: 3}
+  enemyTiles:
+  - {fileID: 3959129403310850232, guid: bfb9f097894ad2b41ba1ec12fa391396, type: 3}
+  - {fileID: 3753692515138817085, guid: 4a710fa7d4bb8694498e19805ca4d3cc, type: 3}
+  - {fileID: 304574828295930958, guid: 1aecc47d273e96e48b844f2387110f82, type: 3}
+  outerWallTiles:
+  - {fileID: 4810953817352861897, guid: 6c021ed798171304b88d8804689ce582, type: 3}
+  player: {fileID: 2083933207987149693, guid: 391ce68c349937c469cd04ccf221eed8, type: 3}
