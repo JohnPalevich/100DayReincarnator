@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null; 
     private BoardManager boardScript;
     public GameObject player;
-    public CameraController camera;
 
     private int level = 3;
     void Awake()
@@ -20,19 +19,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+       
         DontDestroyOnLoad(gameObject);
         boardScript = GetComponent<BoardManager>();
+        boardScript.player = player;
         InitGame();
     }
 
     void InitGame()
     {
         boardScript.SetUpScene(level);
-        player = boardScript.player;
-        CameraController.camera.player = player;
-        CameraController.camera.setOffset();
-
     }
 
     // Update is called once per frame

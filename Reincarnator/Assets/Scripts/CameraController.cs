@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    public GameObject player;
+    public PlayerController player;
     public static CameraController camera = null;
     private Vector3 offset;
 
@@ -20,11 +20,8 @@ public class CameraController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        player = PlayerController.player;
         offset = transform.position - player.transform.position;
-    }
-
-    public void setOffset()
-    {
     }
 
     // Update is called once per frame

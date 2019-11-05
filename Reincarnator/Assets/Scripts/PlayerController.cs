@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         {
             player = this;
         }
-        else
+        else if(player != this)
         {
             Destroy(this);
         }

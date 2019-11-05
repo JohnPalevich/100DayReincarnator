@@ -99,7 +99,6 @@ public class BoardManager : MonoBehaviour
             Vector3 randPos = RandomPosition();
             GameObject tile = tileArr[Random.Range(0, tileArr.Length)];
             GameObject enemy = Instantiate(tile, randPos, Quaternion.identity);
-            //enemy.player = player;
         }
     }
 
