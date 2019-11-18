@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Loader : MonoBehaviour
 {
-    public GameObject camera;
     public GameObject gameManager;
     void Awake()
     {
@@ -12,10 +11,5 @@ public class Loader : MonoBehaviour
         {
             Instantiate(gameManager);
         }
-        if (CameraController.camera == null)
-        {
-            Instantiate(camera);
-        }
     }
-
 }

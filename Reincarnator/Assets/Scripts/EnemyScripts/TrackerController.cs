@@ -12,7 +12,7 @@ public class TrackerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = PlayerController.player.gameObject;
+        player = GameObject.Find("Player");
         rb2d = GetComponent<Rigidbody2D>();
         force.x = 0;
         force.y = 0;

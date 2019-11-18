@@ -7,6 +7,8 @@ TagManager:
   - Coin
   - Enemy
   - Map
+  - Boomerang
+  - Bullets
   layers:
   - Default
   - TransparentFX
@@ -58,4 +60,7 @@ TagManager:
     locked: 0
   - name: Bullets
     uniqueID: 2511380727
+    locked: 0
+  - name: Boomerang
+    uniqueID: 1877268631
     locked: 0

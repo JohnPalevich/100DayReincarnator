@@ -31,7 +31,6 @@ public class BoardManager : MonoBehaviour
     public GameObject[] wallTiles;
     public GameObject[] enemyTiles;
     public GameObject[] outerWallTiles;
-    public GameObject player;
 
     private Transform boardHolder;
     private List<Vector3> gridPositions = new List<Vector3>();
@@ -108,8 +107,6 @@ public class BoardManager : MonoBehaviour
         InitializeList();
         LayoutObjectAtRandomPos(wallTiles, wallCount.minimum, wallCount.maximum);
         LayoutObjectAtRandomPos(pickUpTiles, pickUpCount.minimum, pickUpCount.maximum);
-        Vector3 randPos = RandomPosition();
-        Instantiate(player, randPos, Quaternion.identity);
         int numEnemies = (int)Mathf.Log(level, 2f);
         LayoutObjectAtRandomPos(enemyTiles, numEnemies, numEnemies );
     }

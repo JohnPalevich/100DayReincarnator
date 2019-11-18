@@ -62,16 +62,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BoardManager.cs" />
-    <Compile Include="Assets\Scripts\BulletController.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\ChargerController.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Loader.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Rotator.cs" />
-    <Compile Include="Assets\Scripts\ShooterController.cs" />
-    <Compile Include="Assets\Scripts\TrackerController.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\BulletController.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\ChargerController.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\ShooterController.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\TrackerController.cs" />
+    <Compile Include="Assets\Scripts\GameScripts\BoardManager.cs" />
+    <Compile Include="Assets\Scripts\GameScripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\GameScripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GameScripts\Loader.cs" />
+    <Compile Include="Assets\Scripts\MiscScripts\Rotator.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\BoomerangeController.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/s-palevichj/Documents/GitHub/100DayReincarnator/Reincarnator/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

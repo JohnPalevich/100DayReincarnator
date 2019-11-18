@@ -14,6 +14,7 @@ public class ChargerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         rb2d = GetComponent<Rigidbody2D>();
         charging = false;
         rb2d.freezeRotation = true;

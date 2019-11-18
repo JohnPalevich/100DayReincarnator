@@ -46,12 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ae6d36f7d62cd42a076a9632ebfe7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  knockback: 10
-  coinText: {fileID: 4242696297778264453, guid: baec9237083593e4f964374ef26a59e7,
-    type: 3}
-  lifeText: {fileID: 6871203917690607165, guid: 0448349165ff45f4f8cacb723c61d691,
-    type: 3}
+  speed: 8
+  knockback: 5
 --- !u!50 &7435552154484980680
 Rigidbody2D:
   serializedVersion: 4
@@ -65,7 +61,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 5
   m_GravityScale: 0
   m_Material: {fileID: 0}

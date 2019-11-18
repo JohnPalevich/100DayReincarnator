@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2083933207987149693, guid: 391ce68c349937c469cd04ccf221eed8, type: 3}
+  canvas: {fileID: 0}
 --- !u!114 &1405302218186396601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +67,10 @@ MonoBehaviour:
     minimum: 4
     maximum: 6
   floorTiles:
-  - {fileID: 2121810441649979342, guid: c89d7a9dc4a667c428aab34690e40e71, type: 3}
+  - {fileID: 7845852891660194233, guid: c89d7a9dc4a667c428aab34690e40e71, type: 3}
+  - {fileID: 7471667970447976235, guid: bb18d3e4359f6154497cfa6ecd2cba37, type: 3}
+  - {fileID: 6758585892667729653, guid: 86b72609d9d535a42b3462cd14d70006, type: 3}
+  - {fileID: 6599683625818323135, guid: de0b12f25b7d87448907270e1c1658f3, type: 3}
   pickUpTiles:
   - {fileID: 3612701078990757251, guid: 718487c593bbc9c4ca4955ea73db5038, type: 3}
   wallTiles:
@@ -77,4 +81,6 @@ MonoBehaviour:
   - {fileID: 304574828295930958, guid: 1aecc47d273e96e48b844f2387110f82, type: 3}
   outerWallTiles:
   - {fileID: 4810953817352861897, guid: 6c021ed798171304b88d8804689ce582, type: 3}
-  player: {fileID: 0}
+  - {fileID: 8101113464448028162, guid: 72c9e579b1cd1594bbf663adbc799a70, type: 3}
+  - {fileID: 8885979458432091656, guid: 7e44669192e61064f8a0711d9a47ad04, type: 3}
+  - {fileID: 1417455746851244546, guid: 77c07e4b1d6991d4d9235cfe1eeae3f9, type: 3}

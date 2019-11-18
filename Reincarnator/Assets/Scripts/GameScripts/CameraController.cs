@@ -20,7 +20,6 @@ public class CameraController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        player = PlayerController.player;
         offset = transform.position - player.transform.position;
     }
 
