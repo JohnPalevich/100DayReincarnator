@@ -489,6 +489,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1405302218186396603, guid: 66e319686a7954240b4c1c66f4e82a69,
     type: 3}
+--- !u!20 &611900690 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1402805728265332822, guid: 177872dbcd6694244924e33d5dec3e41,
+    type: 3}
+  m_PrefabInstance: {fileID: 2028691969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &667877393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -562,6 +568,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4150116677796658470, guid: 612534da3c395e545a6d84995aa9a0dc,
         type: 3}
+    - target: {fileID: 5743969592544914001, guid: 391ce68c349937c469cd04ccf221eed8,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 611900690}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 391ce68c349937c469cd04ccf221eed8, type: 3}
 --- !u!224 &682416665 stripped

@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController player = null;
+    public Camera camera;
     public float speed;
     public float knockback;
     public GameObject prefab;
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Boomerang"))
         {
             Destroy(boomerang);
+            updateBoomerang();
             thrown = false;
         }
         if (health <= 0)
@@ -82,15 +84,31 @@ public class PlayerController : MonoBehaviour
 
     private void throwBoomerang()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        float slope = (this.transform.position.y - mousePosition.y) / (this.transform.position.x - mousePosition.x);
-        float xOffset = 0.1f;
-        if(this.transform.position.x - mousePosition.x < 0)
+        Vector3 mousePos = Input.mousePosition;//gets mouse postion
+        mousePos = camera.ScreenToWorldPoint(mousePos);
+        float x1 = transform.position.x;
+        float x2 = mousePos.x;
+        float y1 = transform.position.y;
+        float y2 = mousePos.y;
+        if (x1 < x2)
         {
-            xOffset *= -1;
+            float xHold = x1;
+            x1 = x2;
+            x2 = xHold;
+            float yHold = y1;
+            y1 = y2;
+            y2 = yHold;
         }
-        float yOffset = ((this.transform.position.y) + slope * (this.transform.position.x + xOffset));
-        boomerang = Instantiate(prefab, new Vector3(this.transform.position.x + xOffset, yOffset, 0), Quaternion.identity);
+        float slope = (y2-y1)/(x2-x1);
+        float xOffset = 1.5f;
+        if(transform.position.x > mousePos.x)
+        {
+            xOffset = -1.5f;
+        }
+        float newX = transform.position.x + xOffset;
+        float b = slope * transform.position.x * -1 + transform.position.y;
+        float newY = slope * (newX) + b;
+        boomerang = Instantiate(prefab, new Vector3(newX, newY, 0), Quaternion.identity);
         thrown = true;
     }
 

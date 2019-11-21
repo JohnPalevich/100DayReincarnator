@@ -8,7 +8,7 @@ public class BoomerangeController : MonoBehaviour
     
     private Rigidbody2D rb2d;
     private bool returning;
-
+    private Vector3 dist;
     private Vector2 force;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class BoomerangeController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         force.x = 0;
         force.y = 0;
-
+        //Vector3 dist = new Vector3(transform.x + )
     }
 
     // Update is called once per frame
@@ -31,11 +31,18 @@ public class BoomerangeController : MonoBehaviour
             Vector2 movement = new Vector2(dirX, dirY);
             movement.Normalize();
             force = movement;
-            rb2d.AddForce(movement * 300);
+            rb2d.AddForce(movement * 20);
         }
         else
         {
-
+            
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            returning = true;
         }
     }
 }
