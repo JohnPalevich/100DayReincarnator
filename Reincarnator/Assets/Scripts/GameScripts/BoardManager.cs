@@ -105,9 +105,9 @@ public class BoardManager : MonoBehaviour
     {
         BoardSetup();
         InitializeList();
-        LayoutObjectAtRandomPos(wallTiles, wallCount.minimum, wallCount.maximum);
+        //LayoutObjectAtRandomPos(wallTiles, wallCount.minimum, wallCount.maximum);
         LayoutObjectAtRandomPos(pickUpTiles, pickUpCount.minimum, pickUpCount.maximum);
         int numEnemies = (int)Mathf.Log(level, 2f);
-        LayoutObjectAtRandomPos(enemyTiles, numEnemies, numEnemies );
+        //LayoutObjectAtRandomPos(enemyTiles, numEnemies, numEnemies );
     }
 }

@@ -337,19 +337,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/GameScripts
+    - Assets/Prefabs/WeaponPrefabs
   m_ViewMode: 1
   m_StartGridSize: 80
   m_LastFolders:
-  - Assets/Scripts/GameScripts
+  - Assets/Prefabs/WeaponPrefabs
   m_LastFoldersGridSize: 80
   m_LastProjectPath: C:\Users\s-palevichj\Documents\GitHub\100DayReincarnator\Reincarnator
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 4}
-    m_SelectedIDs: 5c2e0000
-    m_LastClickedID: 11868
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 662f0000
+    m_LastClickedID: 12134
     m_ExpandedIDs: 00000000c82c0000342d00005a2d00008c2f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000842d0000cc300000ec2c000000000000622e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -499,8 +499,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 6afbffff
-      m_LastClickedID: -1174
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: 78fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -561,9 +561,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 33.440037, y: 13.570866, z: -14845.487}
+    m_Target: {x: 12.102442, y: 5.0239344, z: -14855.205}
     speed: 2
-    m_Value: {x: 33.440037, y: 13.570866, z: -14845.487}
+    m_Value: {x: 12.102442, y: 5.0239344, z: -14855.205}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -596,9 +596,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 36.582756
+    m_Target: 10.955112
     speed: 2
-    m_Value: 36.582756
+    m_Value: 10.955112
   m_Ortho:
     m_Target: 1
     speed: 2

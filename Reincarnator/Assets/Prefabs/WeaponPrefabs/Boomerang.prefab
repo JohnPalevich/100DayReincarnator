@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4150116677796658464}
   - component: {fileID: 4150116677796658467}
-  - component: {fileID: 4150116677796658466}
   - component: {fileID: 4150116677796658469}
   - component: {fileID: 4150116677796658468}
   - component: {fileID: 4150116677796658471}
+  - component: {fileID: -5253878521398789411}
   m_Layer: 0
   m_Name: Boomerang
-  m_TagString: Bullets
+  m_TagString: Boomerang
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,32 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4150116677796658466
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4150116677796658470}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &4150116677796658469
 Rigidbody2D:
   serializedVersion: 4
@@ -156,4 +130,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d735b95ee71fd4797a8d8cb3ec169a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAmount: 250
+  rotateAmount: 400
+--- !u!60 &-5253878521398789411
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4150116677796658470}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.5, y: 0.5}
+      - {x: -0.5, y: 0.2734375}
+      - {x: -0.46875, y: 0.265625}
+      - {x: 0.1640625, y: 0.2421875}
+      - {x: 0.2265625, y: 0.1796875}
+      - {x: 0.2578125, y: -0.4765625}
+      - {x: 0.28125, y: -0.5}
+      - {x: 0.484375, y: -0.5}
+      - {x: 0.5, y: -0.484375}
+      - {x: 0.5, y: 0.40625}
+      - {x: 0.4296875, y: 0.5}

@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         
         movement.Normalize();
         rb2d.AddForce(movement * speed);
-        if (Input.GetKeyDown(KeyCode.Space) && !thrown)
+        if (Input.GetMouseButtonDown(0) && !thrown)
         {
             throwBoomerang();
         }
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Boomerang"))
         {
-            Destroy(boomerang);
+            DestroyObject(boomerang);
             updateBoomerang();
             thrown = false;
         }
@@ -83,6 +83,20 @@ public class PlayerController : MonoBehaviour
     }
 
     private void throwBoomerang()
+    {
+        Vector2 spawnPos = findSlope(1.3f);
+        boomerang = Instantiate(prefab, new Vector3(spawnPos.x, spawnPos.y, 0), Quaternion.identity);
+        boomerang.transform.parent = transform;
+        Rigidbody2D boomRB2D = boomerang.GetComponent<Rigidbody2D>();
+        float dirX = (transform.position.x - boomerang.transform.position.x) * -1;
+        float dirY = (transform.position.y - boomerang.transform.position.y) * -1;
+        Vector2 movement = new Vector2(dirX, dirY);
+        movement.Normalize();
+        boomRB2D.AddForce(movement * 500);
+        thrown = true;
+    }
+
+    private Vector2 findSlope(float xOffset)
     {
         Vector3 mousePos = Input.mousePosition;//gets mouse postion
         mousePos = camera.ScreenToWorldPoint(mousePos);
@@ -99,17 +113,15 @@ public class PlayerController : MonoBehaviour
             y1 = y2;
             y2 = yHold;
         }
-        float slope = (y2-y1)/(x2-x1);
-        float xOffset = 1.5f;
-        if(transform.position.x > mousePos.x)
+        float slope = (y2 - y1) / (x2 - x1);
+        if (transform.position.x > mousePos.x)
         {
-            xOffset = -1.5f;
+            xOffset *= -1;
         }
         float newX = transform.position.x + xOffset;
         float b = slope * transform.position.x * -1 + transform.position.y;
         float newY = slope * (newX) + b;
-        boomerang = Instantiate(prefab, new Vector3(newX, newY, 0), Quaternion.identity);
-        thrown = true;
+        return new Vector2(newX, newY);
     }
 
     public void updateBoomerang()
