@@ -18,8 +18,8 @@ public class BoardManager : MonoBehaviour
         }
     }
     //Level Dimensions
-    public int columns = 24;
-    public int rows = 10;
+    public int columns = 36;
+    public int rows = 15;
 
     //# of  all Objects
     public Count wallCount = new Count(4, 10);
@@ -31,6 +31,7 @@ public class BoardManager : MonoBehaviour
     public GameObject[] wallTiles;
     public GameObject[] enemyTiles;
     public GameObject[] outerWallTiles;
+    public GameObject pit;
 
     private Transform boardHolder;
     private List<Vector3> gridPositions = new List<Vector3>();
@@ -101,13 +102,42 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    void LayoutPits(GameObject tile)
+    {
+        int pitCount = Random.Range(1,4);
+        for (int i = 0; i < pitCount; i++)
+        {
+            int width = Random.Range(2,4);
+            int height = Random.Range(2,3);
+            Vector3 randPos = RandomPosition();
+            gridPositions.Add(randPos);
+            for(int j = 0; j < width; j++)
+            {
+                for(int k = 0; k < height; k++)
+                {
+                    if ((randPos.x + j < (columns - 3) && randPos.y + k > (rows - 3)) || randPos.y > 3 || randPos.x > 3) {
+                        Vector3 pos = new Vector3(randPos.x + j, randPos.y + k, 0);
+                        int index = gridPositions.IndexOf(pos);
+                        if (index > 0)
+                        {
+                            gridPositions.RemoveAt(index);
+                            GameObject pitTile = Instantiate(tile, pos, Quaternion.identity);
+                            pitTile.transform.SetParent(boardHolder);
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+
     public void SetUpScene(int level)
     {
         BoardSetup();
         InitializeList();
-        //LayoutObjectAtRandomPos(wallTiles, wallCount.minimum, wallCount.maximum);
+        LayoutPits(pit);
         LayoutObjectAtRandomPos(pickUpTiles, pickUpCount.minimum, pickUpCount.maximum);
         int numEnemies = (int)Mathf.Log(level, 2f);
-        //LayoutObjectAtRandomPos(enemyTiles, numEnemies, numEnemies );
+        LayoutObjectAtRandomPos(enemyTiles, numEnemies, numEnemies );
     }
 }

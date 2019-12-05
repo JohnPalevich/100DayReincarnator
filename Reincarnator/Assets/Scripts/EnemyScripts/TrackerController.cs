@@ -9,6 +9,7 @@ public class TrackerController : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private Vector2 force;
+    private int health = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +33,16 @@ public class TrackerController : MonoBehaviour
         movement.Normalize();
         force = movement;
         rb2d.AddForce(movement * speed);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Boomerang"))
+        {
+            health--;
+        }
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

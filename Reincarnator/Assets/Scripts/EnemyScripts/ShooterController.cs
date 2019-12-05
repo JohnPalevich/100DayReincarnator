@@ -13,6 +13,7 @@ public class ShooterController : MonoBehaviour
 
     private float timeStamp;
     private Rigidbody2D rb2d;
+    private int health = 3;
 
     void Start()
     {
@@ -35,24 +36,37 @@ public class ShooterController : MonoBehaviour
             rb2d.AddForce(dist * 70 * -1);
         }
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Boomerang"))
+        {
+            health--;
+        }
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
     private void Shoot()
     {
         timeStamp = Time.time + cooldown;
         Vector3 pos = new Vector3(5, 0);
 
-        CreateBullet(ShootPosition());
+        CreateBullet();
     }
 
-    private void CreateBullet(Vector3 pos)
+    private void CreateBullet()
     {
+        Vector3 difference = new Vector3(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y, 0) * -1;
+        difference.Normalize();
+        Vector3 spawnPos = transform.position + difference;
         //Creates new bullet and sets it's parent to this object
-        var myNewBullet = Instantiate(bullet, pos, Quaternion.Euler(0f, 0f, 0f));
+        var myNewBullet = Instantiate(bullet, spawnPos, Quaternion.Euler(0f, 0f, 0f));
         myNewBullet.transform.parent = gameObject.transform;
 
         //Initialized bullet's rigidbody, and gives it a direction to move in.
         Rigidbody2D rb2d = myNewBullet.GetComponent<Rigidbody2D>();
-        Vector2 dist = DistToPlayer(pos);
+        Vector2 dist = DistToPlayer(spawnPos);
         dist.Normalize();
         rb2d.AddForce(dist * 100 * bulletSpeed);
 
@@ -74,21 +88,4 @@ public class ShooterController : MonoBehaviour
         return vec;
     }
 
-    private Vector3 ShootPosition()
-    {
-        Vector2 dist = DistToPlayer(transform.position);
-        if(dist.x > 0 && dist.y > 0)
-        {
-            return new Vector3(transform.position.x + increment, transform.position.y + increment);
-        }
-        else if(dist.x > 0 && dist.y < 0)
-        {
-            return new Vector3(transform.position.x + increment, transform.position.y - increment);
-        }
-        else if (dist.x < 0 && dist.y < 0)
-        {
-            return new Vector3(transform.position.x - increment, transform.position.y - increment);
-        }
-        return new Vector3(transform.position.x - increment, transform.position.y + increment);
-    }
 }

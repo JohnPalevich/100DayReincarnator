@@ -84,44 +84,19 @@ public class PlayerController : MonoBehaviour
 
     private void throwBoomerang()
     {
-        Vector2 spawnPos = findSlope(1.3f);
-        boomerang = Instantiate(prefab, new Vector3(spawnPos.x, spawnPos.y, 0), Quaternion.identity);
+        Vector3 mousePos = Input.mousePosition;//gets mouse postion
+        mousePos = camera.ScreenToWorldPoint(mousePos);
+        Vector3 difference = new Vector3(transform.position.x - mousePos.x, transform.position.y - mousePos.y, 0) * -1;
+        difference.Normalize();
+        Vector3 spawnPos = transform.position + difference;
+        boomerang = Instantiate(prefab, spawnPos, Quaternion.identity);
         boomerang.transform.parent = transform;
         Rigidbody2D boomRB2D = boomerang.GetComponent<Rigidbody2D>();
         float dirX = (transform.position.x - boomerang.transform.position.x) * -1;
         float dirY = (transform.position.y - boomerang.transform.position.y) * -1;
         Vector2 movement = new Vector2(dirX, dirY);
-        movement.Normalize();
         boomRB2D.AddForce(movement * 500);
         thrown = true;
-    }
-
-    private Vector2 findSlope(float xOffset)
-    {
-        Vector3 mousePos = Input.mousePosition;//gets mouse postion
-        mousePos = camera.ScreenToWorldPoint(mousePos);
-        float x1 = transform.position.x;
-        float x2 = mousePos.x;
-        float y1 = transform.position.y;
-        float y2 = mousePos.y;
-        if (x1 < x2)
-        {
-            float xHold = x1;
-            x1 = x2;
-            x2 = xHold;
-            float yHold = y1;
-            y1 = y2;
-            y2 = yHold;
-        }
-        float slope = (y2 - y1) / (x2 - x1);
-        if (transform.position.x > mousePos.x)
-        {
-            xOffset *= -1;
-        }
-        float newX = transform.position.x + xOffset;
-        float b = slope * transform.position.x * -1 + transform.position.y;
-        float newY = slope * (newX) + b;
-        return new Vector2(newX, newY);
     }
 
     public void updateBoomerang()

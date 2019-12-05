@@ -11,6 +11,7 @@ public class ChargerController : MonoBehaviour
     private bool charging;
     private Rigidbody2D rb2d;
     private float timeStamp;
+    private int health = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,15 @@ public class ChargerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             stopMovement();
+        }
+        if (collision.gameObject.CompareTag("Boomerang"))
+        {
+            stopMovement();
+            health--;
+        }
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 

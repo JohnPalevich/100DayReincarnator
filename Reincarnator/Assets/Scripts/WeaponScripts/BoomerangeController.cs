@@ -19,13 +19,17 @@ public class BoomerangeController : MonoBehaviour
 
     void Start()
     {
+        //Tells the boomerang to not return
         returning = false;
+
+        //Finds the player so it can return to it later.
         player = GameObject.Find("Player");
+
         rb2d = GetComponent<Rigidbody2D>();
         force.x = 0;
         force.y = 0;
-        initPos = transform;
 
+        //Basically removes all friction that could slow the boomerang
         mass = rb2d.mass;
         rb2d.mass = 0;
         linDrag = rb2d.drag;
@@ -37,11 +41,8 @@ public class BoomerangeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!returning && Vector3.Distance(initPos.position, transform.position) > 10)
-        {
-            setReturning();
-        }
         if (returning){
+            //Code that tracks the player down.
             Vector2 playerPos = player.transform.position;
             float dirX = (transform.position.x - playerPos.x) * -1;
             float dirY = (transform.position.y - playerPos.y) * -1;
@@ -53,7 +54,8 @@ public class BoomerangeController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Map"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Map")
+            || collision.gameObject.CompareTag("Bullets") && !returning)
         {
             setReturning();
         }
@@ -61,6 +63,7 @@ public class BoomerangeController : MonoBehaviour
 
     private void setReturning()
     {
+        //resets the rigidbody information so it can do cool boomerang things
         rb2d.mass = mass;
         rb2d.drag = linDrag;
         rb2d.angularDrag = angDrag;
