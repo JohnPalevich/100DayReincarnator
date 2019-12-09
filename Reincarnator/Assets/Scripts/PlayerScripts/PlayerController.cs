@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private bool thrown;
-    private int coins;
-    private int health;
+    private int coins = 0;
+    private int health = 30;
     private GameObject boomerang;
     
     void Start(){
@@ -25,22 +25,25 @@ public class PlayerController : MonoBehaviour
             Destroy(this);
         }
         rb2d = GetComponent<Rigidbody2D>();
-        coins = 0;
-        health = 30;
-        GameManager.instance.SetCoinText(coins);
-        GameManager.instance.SetLifeText(health);
-        rb2d.freezeRotation = true;
+
+        GameManager.instance.SetCoinText(coins);            //Turns on Coin Text on top Left
+        GameManager.instance.SetLifeText(health);           //Turns on Health Text on top Left
+
+
+        rb2d.freezeRotation = true;                         //Ensures It doesn't rotate after collisions
+
         thrown = false;
         updateBoomerang();
+
     }
     void FixedUpdate(){
-        float moveHorz = Input.GetAxis("Horizontal");
-        float moveVert = Input.GetAxis("Vertical");
+        float moveHorz = Input.GetAxis("Horizontal");               //Gets "A" or "D" inputs
+        float moveVert = Input.GetAxis("Vertical");                 //Gets "W" or "S" inputs
         Vector2 movement = new Vector2(moveHorz, moveVert);
         
         movement.Normalize();
-        rb2d.AddForce(movement * speed);
-        if (Input.GetMouseButtonDown(0) && !thrown)
+        rb2d.AddForce(movement * speed);                            //Pushes the play object
+        if (Input.GetMouseButtonDown(0) && !thrown)                 //Checks to see if mouse is being clicked and if it hasn't been thrown
         {
             throwBoomerang();
         }
@@ -72,10 +75,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Boomerang"))
         {
-            DestroyObject(boomerang);
+            Object.Destroy(boomerang);
             updateBoomerang();
             thrown = false;
         }
+
         if (health <= 0)
         {
             gameObject.SetActive(false);
@@ -84,18 +88,24 @@ public class PlayerController : MonoBehaviour
 
     private void throwBoomerang()
     {
-        Vector3 mousePos = Input.mousePosition;//gets mouse postion
-        mousePos = camera.ScreenToWorldPoint(mousePos);
+        Vector3 mousePos = Input.mousePosition;             
+        mousePos = camera.ScreenToWorldPoint(mousePos);         //Converts mouse position on screen to position in-game. 
         Vector3 difference = new Vector3(transform.position.x - mousePos.x, transform.position.y - mousePos.y, 0) * -1;
         difference.Normalize();
-        Vector3 spawnPos = transform.position + difference;
+        //Debug.Log("Mouse X:" + mousePos.x + "Mouse Y:" + mousePos.y);     //Print statement for debugging mouse position
+        Vector3 spawnPos = transform.position + (difference * 1.3f);
+        //Debug.Log("Spawn X: " + spawnPos.x + " Spawn Y: " + spawnPos.y);  //Print statement for debugging spawnPosition of the boomerang
+
+        //Creates the object and organizes the object in the heirarchy
         boomerang = Instantiate(prefab, spawnPos, Quaternion.identity);
         boomerang.transform.parent = transform;
+        
+        //Calculations for the direction in which the boomerang will travel in.
         Rigidbody2D boomRB2D = boomerang.GetComponent<Rigidbody2D>();
         float dirX = (transform.position.x - boomerang.transform.position.x) * -1;
         float dirY = (transform.position.y - boomerang.transform.position.y) * -1;
         Vector2 movement = new Vector2(dirX, dirY);
-        boomRB2D.AddForce(movement * 500);
+        boomRB2D.AddForce(movement * 250);
         thrown = true;
     }
 

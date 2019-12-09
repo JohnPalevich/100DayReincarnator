@@ -10,7 +10,8 @@ public class TrackerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private Vector2 force;
     private int health = 5;
-    // Start is called before the first frame update
+
+    //Finds the player and sets up some basic information
     void Start()
     {
         player = GameObject.Find("Player");
@@ -20,6 +21,7 @@ public class TrackerController : MonoBehaviour
         rb2d.freezeRotation = true;
     }
 
+    //Pushes the object towards the player
     void FixedUpdate()
     {
         if(player == null)
@@ -34,9 +36,11 @@ public class TrackerController : MonoBehaviour
         force = movement;
         rb2d.AddForce(movement * speed);
     }
+
+    //When colliding, check to see if it with certain objects, if so...
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Boomerang"))
+        if (collision.gameObject.CompareTag("Boomerang") || collision.gameObject.CompareTag("Bullets"))
         {
             health--;
         }

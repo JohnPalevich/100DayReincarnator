@@ -12,7 +12,8 @@ public class ChargerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private float timeStamp;
     private int health = 5;
-    // Start is called before the first frame update
+    
+    //Sets up basic information.
     void Start()
     {
         player = GameObject.Find("Player");
@@ -21,7 +22,7 @@ public class ChargerController : MonoBehaviour
         rb2d.freezeRotation = true;
     }
 
-    // Update is called once per frame
+    //Checking to see if it needs to start charging
     void FixedUpdate()
     {
         if (timeStamp <= Time.time && !charging)
@@ -36,17 +37,14 @@ public class ChargerController : MonoBehaviour
         }
     }
 
+    //Executes some checks when colliding with other objects.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Map"))
+        if (collision.gameObject.CompareTag("Map") || collision.gameObject.CompareTag("Player"))
         {
             stopMovement();
         }
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            stopMovement();
-        }
-        if (collision.gameObject.CompareTag("Boomerang"))
+        else if (collision.gameObject.CompareTag("Boomerang") || collision.gameObject.CompareTag("Bullets"))
         {
             stopMovement();
             health--;
@@ -57,6 +55,7 @@ public class ChargerController : MonoBehaviour
         }
     }
 
+    //Code to set cooldown on itself and stop itself from moving.
     private void stopMovement()
     {
         rb2d.velocity = Vector2.zero;

@@ -46,8 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ae6d36f7d62cd42a076a9632ebfe7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 0}
   speed: 8
   knockback: 5
+  prefab: {fileID: 4150116677796658470, guid: 612534da3c395e545a6d84995aa9a0dc, type: 3}
 --- !u!50 &7435552154484980680
 Rigidbody2D:
   serializedVersion: 4

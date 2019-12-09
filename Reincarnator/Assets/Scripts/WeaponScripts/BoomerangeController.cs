@@ -16,7 +16,7 @@ public class BoomerangeController : MonoBehaviour
     private float linDrag;
     private float angDrag;
 
-
+    //Sets up information for the boomerang to use
     void Start()
     {
         //Tells the boomerang to not return
@@ -38,7 +38,7 @@ public class BoomerangeController : MonoBehaviour
         rb2d.angularDrag = 0;
     }
 
-    // Update is called once per frame
+    //Track player down if returning.
     void Update()
     {
         if (returning){
@@ -52,6 +52,8 @@ public class BoomerangeController : MonoBehaviour
             rb2d.AddForce(movement * 20);
         }
     }
+
+    //If collides with certain objects, then do...
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Map")
@@ -61,6 +63,7 @@ public class BoomerangeController : MonoBehaviour
         }
     }
 
+    //Gets the object's physics ready for returning.
     private void setReturning()
     {
         //resets the rigidbody information so it can do cool boomerang things

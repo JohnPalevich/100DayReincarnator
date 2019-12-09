@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\GameScripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\GameScripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameScripts\Loader.cs" />
+    <Compile Include="Assets\Scripts\MiscScripts\PitController.cs" />
     <Compile Include="Assets\Scripts\MiscScripts\Rotator.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\BoomerangeController.cs" />

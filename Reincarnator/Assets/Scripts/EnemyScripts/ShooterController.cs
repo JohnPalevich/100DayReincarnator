@@ -23,6 +23,7 @@ public class ShooterController : MonoBehaviour
         rb2d.freezeRotation = true;
     }
 
+    //Updates the timeStamp and runs away from the player if it gets too close.
     void FixedUpdate()
     {
         if (timeStamp <= Time.time)
@@ -33,12 +34,14 @@ public class ShooterController : MonoBehaviour
         if (dist.magnitude < 3)
         {
             dist.Normalize();
-            rb2d.AddForce(dist * 70 * -1);
+            rb2d.AddForce(dist * 30 * -1);
         }
     }
+    
+    //Tests to see if it collides with the players weapon.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Boomerang"))
+        if (collision.gameObject.CompareTag("Boomerang") || collision.gameObject.CompareTag("Bullets"))
         {
             health--;
         }
@@ -47,14 +50,15 @@ public class ShooterController : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    //Method to shoot the player and set the cooldown.
     private void Shoot()
     {
         timeStamp = Time.time + cooldown;
-        Vector3 pos = new Vector3(5, 0);
-
         CreateBullet();
     }
 
+    //Creates a bullet and shoots it towards the players
     private void CreateBullet()
     {
         Vector3 difference = new Vector3(transform.position.x - player.transform.position.x, transform.position.y - player.transform.position.y, 0) * -1;
@@ -79,6 +83,7 @@ public class ShooterController : MonoBehaviour
         }
     }
 
+    //Finds the distance to the player from current location.
     private Vector2 DistToPlayer(Vector3 pos)
     {
         Vector2 playerPos = player.transform.position;

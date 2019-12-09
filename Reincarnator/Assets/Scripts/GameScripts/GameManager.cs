@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private Text healthText;
     private Text coinText;
     private int level = 3;
+    
+    //Initiates the boardManager as well as the text on the screen.
     void Awake()
     {
         if(instance == null)
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //Initiates the Level
     void InitGame()
     {
         boardScript.SetUpScene(level);
