@@ -58,8 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37434bedb2926e446a658fc2b3fa2f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 28
-  rows: 12
+  columns: 24
+  rows: 10
   wallCount:
     minimum: 3
     maximum: 10
@@ -90,7 +90,7 @@ MonoBehaviour:
   enemyTiles:
   - {fileID: 3959129403310850232, guid: bfb9f097894ad2b41ba1ec12fa391396, type: 3}
   - {fileID: 3753692515138817085, guid: 4a710fa7d4bb8694498e19805ca4d3cc, type: 3}
-  - {fileID: 304574828295930958, guid: 1aecc47d273e96e48b844f2387110f82, type: 3}
+  - {fileID: 4592387147476298666, guid: 9112df2a799e41542986c5f139f9e9d6, type: 3}
   outerWallTiles:
   - {fileID: 4810953817352861897, guid: 6c021ed798171304b88d8804689ce582, type: 3}
   - {fileID: 8101113464448028162, guid: 72c9e579b1cd1594bbf663adbc799a70, type: 3}

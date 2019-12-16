@@ -41,7 +41,7 @@ public class ShooterController : MonoBehaviour
     //Tests to see if it collides with the players weapon.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Boomerang") || collision.gameObject.CompareTag("Bullets"))
+        if (collision.gameObject.CompareTag("Boomerang"))
         {
             health--;
         }

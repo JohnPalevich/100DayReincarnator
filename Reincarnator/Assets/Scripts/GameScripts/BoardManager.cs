@@ -147,6 +147,6 @@ public class BoardManager : MonoBehaviour
         LayoutPits(pit);
         LayoutObjectAtRandomPos(pickUpTiles, pickUpCount.minimum, pickUpCount.maximum);
         //int numEnemies = (int)Mathf.Log(level, 2f);
-        LayoutObjectAtRandomPos(enemyTiles, 2, 3);
+        LayoutObjectAtRandomPos(enemyTiles, 2, 2);
     }
 }

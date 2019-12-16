@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
         float dirX = (transform.position.x - boomerang.transform.position.x) * -1;
         float dirY = (transform.position.y - boomerang.transform.position.y) * -1;
         Vector2 movement = new Vector2(dirX, dirY);
-        boomRB2D.AddForce(movement * 250);
+        boomRB2D.AddForce(movement * 275);
         thrown = true;
     }
 
