@@ -8,7 +8,7 @@ public class BulletController : MonoBehaviour
     //Checks to see if the bullet has collided with certain objects, if so, destroy itself.
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Map") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Map") || collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Bullets"))
         {
             Destroy(gameObject);
         }
@@ -16,7 +16,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Boomerang"))
+        if(collision.gameObject.CompareTag("Boomerang") || collision.gameObject.CompareTag("Bullets"))
         {
             Destroy(gameObject);
         }

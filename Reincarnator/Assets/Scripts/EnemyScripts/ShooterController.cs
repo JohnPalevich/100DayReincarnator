@@ -11,6 +11,7 @@ public class ShooterController : MonoBehaviour
     public int speed;
     public float increment;
 
+    private bool flip = false;
     private float timeStamp;
     private Rigidbody2D rb2d;
     private int health = 3;
@@ -36,8 +37,18 @@ public class ShooterController : MonoBehaviour
             dist.Normalize();
             rb2d.AddForce(dist * 30 * -1);
         }
+        if(dist.x > 0 && !flip)
+        {
+            flip = true;
+            transform.localScale = new Vector3(-0.8f, 0.8f, 0.8f);
+        }
+        else if (dist.x < 0 && flip)
+        {
+            flip = false;
+            transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        }
     }
-    
+   
     //Tests to see if it collides with the players weapon.
     private void OnCollisionEnter2D(Collision2D collision)
     {
