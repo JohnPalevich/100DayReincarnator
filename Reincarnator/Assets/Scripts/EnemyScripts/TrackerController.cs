@@ -9,11 +9,17 @@ public class TrackerController : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private Vector2 force;
-    private int health = 5;
+    private float health = 5;
+    private float maxHealth = 5;
+    private Transform bar;
+    private Transform hpBar;
 
     //Finds the player and sets up some basic information
     void Start()
     {
+        hpBar = transform.Find("HealthBar");
+        bar = hpBar.transform.Find("Bar");
+        hpBar.gameObject.SetActive(false);
         player = GameObject.Find("Player");
         rb2d = GetComponent<Rigidbody2D>();
         force.x = 0;
@@ -42,11 +48,23 @@ public class TrackerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Boomerang") || collision.gameObject.CompareTag("Bullets"))
         {
+            if (health == maxHealth)
+            {
+                hpBar.gameObject.SetActive(true);
+                hpBar.position = new Vector3(transform.localPosition.x, transform.localPosition.y - 1f, transform.localPosition.z);
+            }
             health--;
+            float f = health / maxHealth;
+            SetSize(f);
         }
         if (health <= 0)
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void SetSize(float hpLeft)
+    {
+        bar.localScale = new Vector3(hpLeft, 1f, 1f);
     }
 }

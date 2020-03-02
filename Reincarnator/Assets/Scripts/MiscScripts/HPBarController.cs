@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class HPBarController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Transform bar; 
+
     void Start()
     {
-        
+        bar = transform.Find("Bar");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetSize(float hpLeft)
     {
-        
+        bar.localScale = new Vector3(hpLeft, 1f);
     }
 }

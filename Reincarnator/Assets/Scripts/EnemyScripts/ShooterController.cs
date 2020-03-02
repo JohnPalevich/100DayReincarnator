@@ -10,14 +10,19 @@ public class ShooterController : MonoBehaviour
     public int bulletSpeed;
     public int speed;
     public float increment;
+    private Transform bar;
+    private Transform hpBar;
 
     private bool flip = false;
     private float timeStamp;
     private Rigidbody2D rb2d;
-    private int health = 3;
-
+    private float health = 3f;
+    private float maxHealth = 3f;
     void Start()
     {
+        hpBar = transform.Find("HealthBar");
+        bar = hpBar.transform.Find("Bar");
+        hpBar.gameObject.SetActive(false);
         player = GameObject.Find("Player");
         rb2d = GetComponent<Rigidbody2D>();
         timeStamp = 0;
@@ -41,11 +46,19 @@ public class ShooterController : MonoBehaviour
         {
             flip = true;
             transform.localScale = new Vector3(-0.8f, 0.8f, 0.8f);
+            if(hpBar != null)
+            {
+                hpBar.transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
         }
         else if (dist.x < 0 && flip)
         {
             flip = false;
             transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            if(hpBar != null)
+            {
+                hpBar.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
         }
     }
    
@@ -54,7 +67,14 @@ public class ShooterController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Boomerang"))
         {
+            if(health == maxHealth)
+            {
+                hpBar.gameObject.SetActive(true);
+                hpBar.position = new Vector3(transform.localPosition.x, transform.localPosition.y - 1f, transform.localPosition.z);
+            }
             health--;
+            float f = health / maxHealth;
+            SetSize(f);
         }
         if (health <= 0)
         {
@@ -103,5 +123,8 @@ public class ShooterController : MonoBehaviour
         Vector2 vec = new Vector2(dirX, dirY);
         return vec;
     }
-
+    public void SetSize(float hpLeft)
+    {
+        bar.localScale = new Vector3(hpLeft, 1f);
+    }
 }

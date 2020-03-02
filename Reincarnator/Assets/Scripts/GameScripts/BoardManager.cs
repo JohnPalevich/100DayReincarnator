@@ -32,6 +32,7 @@ public class BoardManager : MonoBehaviour
     public GameObject[] enemyTiles;
     public GameObject[] outerWallTiles;
     public GameObject pit;
+    public GameObject hpBar;
 
     private Transform boardHolder;
     private List<Vector3> gridPositions = new List<Vector3>();
@@ -91,7 +92,6 @@ public class BoardManager : MonoBehaviour
             Vector3 randPos = RandomPosition();
             GameObject tile = tileArr[Random.Range(0, tileArr.Length)];
             Instantiate(tile, randPos, Quaternion.identity);
-
         }
     }
 
