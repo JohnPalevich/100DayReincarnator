@@ -11,11 +11,17 @@ public class ChargerController : MonoBehaviour
     private bool charging;
     private Rigidbody2D rb2d;
     private float timeStamp;
-    private int health = 5;
-    
+    private float health = 5;
+    private float maxHealth = 5;
+    private Transform hpBar;
+    private Transform bar;
+    private Vector2 movement;
     //Sets up basic information.
     void Start()
     {
+        hpBar = transform.Find("HealthBar");
+        bar = hpBar.transform.Find("Bar");
+        hpBar.gameObject.SetActive(false);
         player = GameObject.Find("Player");
         rb2d = GetComponent<Rigidbody2D>();
         charging = false;
@@ -30,9 +36,10 @@ public class ChargerController : MonoBehaviour
             Vector2 playerPos = player.transform.position;
             float dirX = (transform.position.x - playerPos.x) * -1;
             float dirY = (transform.position.y - playerPos.y) * -1;
-            Vector2 movement = new Vector2(dirX, dirY);
+            movement = new Vector2(dirX, dirY);
             movement.Normalize();
-            rb2d.AddForce(movement * speed);
+            movement = movement * speed;
+            rb2d.AddForce(movement);
             charging = true;
         }
     }
@@ -47,7 +54,14 @@ public class ChargerController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Boomerang") || collision.gameObject.CompareTag("Bullets"))
         {
             stopMovement();
+            if (health == maxHealth)
+            {
+                hpBar.gameObject.SetActive(true);
+                hpBar.position = new Vector3(transform.localPosition.x, transform.localPosition.y - 1f, transform.localPosition.z);
+            }
             health--;
+            float f = health / maxHealth;
+            SetSize(f);
         }
         if (health <= 0)
         {
@@ -61,5 +75,10 @@ public class ChargerController : MonoBehaviour
         rb2d.velocity = Vector2.zero;
         charging = false;
         timeStamp = Time.time + cooldown;
+    }
+
+    public void SetSize(float hpLeft)
+    {
+        bar.localScale = new Vector3(hpLeft, 1f, 1f);
     }
 }

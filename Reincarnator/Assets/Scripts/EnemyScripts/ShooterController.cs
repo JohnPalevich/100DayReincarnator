@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShooterController : MonoBehaviour
 {
-    public int cooldown;
+    public float cooldown;
     public GameObject player;
     public GameObject bullet;
     public int bulletSpeed;
@@ -25,7 +25,7 @@ public class ShooterController : MonoBehaviour
         hpBar.gameObject.SetActive(false);
         player = GameObject.Find("Player");
         rb2d = GetComponent<Rigidbody2D>();
-        timeStamp = 0;
+        timeStamp = Time.time + cooldown;
         rb2d.freezeRotation = true;
     }
 
@@ -45,7 +45,7 @@ public class ShooterController : MonoBehaviour
         if(dist.x > 0 && !flip)
         {
             flip = true;
-            transform.localScale = new Vector3(-0.8f, 0.8f, 0.8f);
+            transform.localScale = new Vector3(-0.75f, 0.75f, 0.75f);
             if(hpBar != null)
             {
                 hpBar.transform.localScale = new Vector3(-1f, 1f, 1f);

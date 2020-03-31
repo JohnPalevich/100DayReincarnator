@@ -118,11 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461bc458c4b1199478218587e17ea2e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 3
+  cooldown: 3.05
   player: {fileID: 0}
   bullet: {fileID: 8587794323137720878, guid: 2c43cb23df27b6743968d55fc462b84e, type: 3}
   bulletSpeed: 3
-  speed: 45
+  speed: 30
   increment: 0.5
 --- !u!95 &1809506597305960218
 Animator:

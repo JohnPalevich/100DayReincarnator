@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
@@ -12,8 +13,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private bool thrown;
     private int coins = 0;
-    private int health = 30;
+    private float health = 30f;
+    private float maxHealth = 30f;
     private GameObject boomerang;
+    private 
     
     void Start(){
         if(player == null)
@@ -26,9 +29,10 @@ public class PlayerController : MonoBehaviour
         }
         rb2d = GetComponent<Rigidbody2D>();
 
-        GameManager.instance.SetCoinText(coins);            //Turns on Coin Text on top Left
-        GameManager.instance.SetLifeText(health);           //Turns on Health Text on top Left
+        setUpSelf();
 
+        GameManager.instance.SetCoinText(coins);            //Turns on Coin Text on top Left
+        GameManager.instance.SetHealth(health / maxHealth);
 
         rb2d.freezeRotation = true;                         //Ensures It doesn't rotate after collisions
 
@@ -36,6 +40,15 @@ public class PlayerController : MonoBehaviour
         updateBoomerang();
 
     }
+
+    private void setUpSelf()
+    {
+        Dictionary<string, string> info = GameManager.instance.retrievePlayerInfo();
+        coins = int.Parse(info["coins"]);
+        health = float.Parse(info["health"]);
+        maxHealth = float.Parse(info["maxHealth"]);
+    }
+
     void FixedUpdate(){
         float moveHorz = Input.GetAxis("Horizontal");               //Gets "A" or "D" inputs
         float moveVert = Input.GetAxis("Vertical");                 //Gets "W" or "S" inputs
@@ -62,13 +75,13 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             health -= 1;
-            GameManager.instance.SetLifeText(health);
+            GameManager.instance.SetHealth(health / maxHealth);
             rb2d.AddForce(collision.relativeVelocity * knockback );
         }
         else if (collision.gameObject.CompareTag("Bullets"))
         {
             health -= 1;
-            GameManager.instance.SetLifeText(health);
+            GameManager.instance.SetHealth(health / maxHealth);
             Vector2 knock = collision.relativeVelocity.normalized;
             rb2d.AddForce(knock);
             Destroy(collision.gameObject);
@@ -78,6 +91,10 @@ public class PlayerController : MonoBehaviour
             Object.Destroy(boomerang);
             updateBoomerang();
             thrown = false;
+        }
+        else if (collision.gameObject.CompareTag("Exit"))
+        {
+            GameManager.instance.wrapUpLevel(keepImportantInformation());
         }
 
         if (health <= 0)
@@ -112,5 +129,14 @@ public class PlayerController : MonoBehaviour
     public void updateBoomerang()
     {
         boomerang = prefab;
+    }
+
+    public Dictionary<string, string> keepImportantInformation()
+    {
+        Dictionary<string, string> info = new Dictionary<string, string>();
+        info.Add("health", health.ToString());
+        info.Add("maxHealth", maxHealth.ToString());
+        info.Add("coins", coins.ToString());
+        return info;
     }
 }
