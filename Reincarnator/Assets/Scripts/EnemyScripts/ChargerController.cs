@@ -16,6 +16,7 @@ public class ChargerController : MonoBehaviour
     private Transform hpBar;
     private Transform bar;
     private Vector2 movement;
+    private Animator animator;
     //Sets up basic information.
     void Start()
     {
@@ -26,6 +27,7 @@ public class ChargerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         charging = false;
         rb2d.freezeRotation = true;
+        animator = GetComponent<Animator>();
     }
 
     //Checking to see if it needs to start charging
@@ -41,6 +43,7 @@ public class ChargerController : MonoBehaviour
             movement = movement * speed;
             rb2d.AddForce(movement);
             charging = true;
+            animator.Play("BullCharge", 0 , 0f);
         }
     }
 
@@ -75,6 +78,7 @@ public class ChargerController : MonoBehaviour
         rb2d.velocity = Vector2.zero;
         charging = false;
         timeStamp = Time.time + cooldown;
+        animator.Play("BullRefresh", 0 , 0f);
     }
 
     public void SetSize(float hpLeft)
