@@ -17,6 +17,8 @@ public class ChargerController : MonoBehaviour
     private Transform bar;
     private Vector2 movement;
     private Animator animator;
+    private bool flip = false;
+
     //Sets up basic information.
     void Start()
     {
@@ -43,6 +45,7 @@ public class ChargerController : MonoBehaviour
             movement = movement * speed;
             rb2d.AddForce(movement);
             charging = true;
+            setDirection(transform.position);
             animator.Play("BullCharge", 0 , 0f);
         }
     }
@@ -69,6 +72,32 @@ public class ChargerController : MonoBehaviour
         if (health <= 0)
         {
             gameObject.SetActive(false);
+        }
+    }
+
+    private void setDirection(Vector3 pos)
+    {
+        Vector2 playerPos = player.transform.position;
+        float dirX = (pos.x - playerPos.x) * -1;
+        float dirY = (pos.y - playerPos.y) * -1;
+        Vector2 dist = new Vector2(dirX, dirY);
+        if (dist.x > 0 && !flip)
+        {
+            flip = true;
+            transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+            if (hpBar != null)
+            {
+                hpBar.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+        }
+        else if (dist.x < 0 && flip)
+        {
+            flip = false;
+            transform.localScale = new Vector3(-0.8f, 0.8f, 0.8f);
+            if (hpBar != null)
+            {
+                hpBar.transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
         }
     }
 
