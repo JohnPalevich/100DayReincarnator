@@ -1,4 +1,4 @@
-health, 30
+health, 3
 maxHealth, 30
-coins, 0
+coins, 32
 day, 1

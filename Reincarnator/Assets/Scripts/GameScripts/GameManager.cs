@@ -74,8 +74,9 @@ public class GameManager : MonoBehaviour
         "day, " + level.ToString() + "\n";
 
         // Write to disk
-        StreamWriter writer = new StreamWriter("Assets/SaveData/saveData.txt", true);
+        StreamWriter writer = new StreamWriter("Assets/SaveData/saveData.txt", false);
         writer.Write(serializedData);
+        writer.Close();
         fadeMe();
     }
 
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
         maxHealth = int.Parse(reader.ReadLine().Split(',')[1]);
         coins = int.Parse(reader.ReadLine().Split(',')[1]);
         level = int.Parse(reader.ReadLine().Split(',')[1]);
+        reader.Close();
         boardScript.SetUpScene(level);
     }
 
