@@ -78,7 +78,7 @@ public class ShooterController : MonoBehaviour
         }
         if (health <= 0)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 

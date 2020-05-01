@@ -34,6 +34,7 @@ public class BoardManager : MonoBehaviour
     public GameObject pit;
     public GameObject hpBar;
 
+
     private Transform boardHolder;
     private List<Vector3> gridPositions = new List<Vector3>();
 
@@ -148,5 +149,13 @@ public class BoardManager : MonoBehaviour
         LayoutObjectAtRandomPos(pickUpTiles, pickUpCount.minimum, pickUpCount.maximum);
         //int numEnemies = (int)Mathf.Log(level, 2f);
         LayoutObjectAtRandomPos(enemyTiles, 2, 2);
+    }
+    
+    public void clearLevel()
+    {
+        foreach (Transform child in boardHolder.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

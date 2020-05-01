@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null; 
     public GameObject player;
-    public Canvas canvas;
 
     private BoardManager boardScript;
     private Text coinText;
@@ -17,6 +16,8 @@ public class GameManager : MonoBehaviour
     private float health;
     private float maxHealth;
     private int coins;
+    private Image fade;
+    private RectTransform rt;
     
     //Initiates the boardManager as well as the text on the screen.
     void Awake()
@@ -34,6 +35,15 @@ public class GameManager : MonoBehaviour
         setUpLevel();
         coinText = GameObject.Find("CoinText").GetComponent<Text>();
         hpBar = GameObject.Find("PlayerHPBar").transform;
+        rt = GameObject.Find("FadeIMG").GetComponent<RectTransform>();
+        rt.sizeDelta = GameObject.Find("Canvas").GetComponent<RectTransform>().sizeDelta;
+        fade = GameObject.Find("FadeIMG").GetComponent<Image>();
+        Color col = new Color();
+        col.a = 0;
+        col.r = fade.color.r;
+        col.g = fade.color.g;
+        col.b = fade.color.b;
+        fade.color = col;
     }
 
     //Initiates the Level
@@ -66,6 +76,7 @@ public class GameManager : MonoBehaviour
         // Write to disk
         StreamWriter writer = new StreamWriter("Assets/SaveData/saveData.txt", true);
         writer.Write(serializedData);
+        fadeMe();
     }
 
     public void setUpLevel()
@@ -85,6 +96,53 @@ public class GameManager : MonoBehaviour
         info.Add("maxHealth", maxHealth.ToString());
         info.Add("coins", coins.ToString());
         return info;
+    }
+
+    public void fadeMe()
+    {
+        StartCoroutine(doFade());
+    }
+
+    public void unfadeMe()
+    {
+        StartCoroutine(undoFade());
+    }
+
+    IEnumerator doFade()
+    {
+        float alpha = fade.color.a;
+        while (alpha < 1)
+        {
+            alpha += 1f * Time.deltaTime;
+            Color col = new Color();
+            col.a = alpha;
+            col.r = fade.color.r;
+            col.g = fade.color.g;
+            col.b = fade.color.b;
+            fade.color = col;
+            yield return null;
+        }
+        boardScript.clearLevel();
+        setUpLevel();
+        unfadeMe();
+        yield return null;
+    }
+
+    IEnumerator undoFade()
+    {
+        float alpha = fade.color.a;
+        while (alpha > 0)
+        {
+            alpha -= 1f * Time.deltaTime;
+            Color col = new Color();
+            col.a = alpha;
+            col.r = fade.color.r;
+            col.g = fade.color.g;
+            col.b = fade.color.b;
+            fade.color = col;
+            yield return null;
+        }
+        yield return null;
     }
 
     // Update is called once per frame

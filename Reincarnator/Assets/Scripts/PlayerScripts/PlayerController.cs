@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Coin")){
-            other.gameObject.SetActive(false);
+            Destroy(other.gameObject);
             coins++;
             GameManager.instance.SetCoinText(coins);
         }

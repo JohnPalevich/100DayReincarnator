@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2083933207987149693, guid: 391ce68c349937c469cd04ccf221eed8, type: 3}
-  canvas: {fileID: 0}
+  blackScreen: {fileID: 2313048519727709591, guid: 83ef76440cdf73848acb9c7d8cdce36a,
+    type: 3}
 --- !u!114 &1405302218186396601
 MonoBehaviour:
   m_ObjectHideFlags: 0
