@@ -13,7 +13,8 @@
 The game is written in C# using Unity. Currently it is still in development. By the end of summer 2020, I would like to have it published to the Steam store.
 
 # Randomized Levels
-
+Each combat level is randomly generated with enemies, coins, and pits. 
+![Gameplay/Randomized Levels](https://media.giphy.com/media/SSVyAk6gyWDSR2ooO8/giphy.gif)
 # Art Style
 All the art in the game is pixel art I created from [PiskelApp](https://www.piskelapp.com/). <p>
 Below are some animations. <p>
