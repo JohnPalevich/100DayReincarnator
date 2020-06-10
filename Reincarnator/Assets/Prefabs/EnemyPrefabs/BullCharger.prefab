@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5309485311557345529}
   - component: {fileID: 7454689664786038696}
   - component: {fileID: 2603289020107000574}
+  - component: {fileID: -6953075965034461603}
   m_Layer: 0
   m_Name: BullCharger
   m_TagString: Enemy
@@ -166,6 +167,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-6953075965034461603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2637244050104199479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2a77fcce360fa42a2e133530fa6c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin: {fileID: 5984099754588146021, guid: 718487c593bbc9c4ca4955ea73db5038, type: 3}
+  powerup1: {fileID: 5175320750152440785, guid: 5562ef426e93e4c4d8d9f5a63d8e2921,
+    type: 3}
+  powerup2: {fileID: 8643479369614029487, guid: 87a08c2f6bfff9349929299021356f26,
+    type: 3}
 --- !u!1001 &3969428664539496582
 PrefabInstance:
   m_ObjectHideFlags: 0

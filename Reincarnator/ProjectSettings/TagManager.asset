@@ -10,6 +10,8 @@ TagManager:
   - Boomerang
   - Bullets
   - Exit
+  - Sword
+  - Powerup
   layers:
   - Default
   - TransparentFX
@@ -21,9 +23,9 @@ TagManager:
   - 
   - Pit
   - Projectiles
-  - 
-  - 
-  - 
+  - Powerups
+  - Sword
+  - Player
   - 
   - 
   - 

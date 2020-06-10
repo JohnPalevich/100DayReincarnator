@@ -31,6 +31,7 @@ public class BoardManager : MonoBehaviour
     public GameObject[] wallTiles;
     public GameObject[] enemyTiles;
     public GameObject[] outerWallTiles;
+    public GameObject[] exit;
     public GameObject pit;
     public GameObject hpBar;
 
@@ -85,15 +86,18 @@ public class BoardManager : MonoBehaviour
     }
 
     //Lays out X amount of objects from a specific type of array.
-    void LayoutObjectAtRandomPos(GameObject[] tileArr, int min, int max)
+    int LayoutObjectAtRandomPos(GameObject[] tileArr, int min, int max)
     {
         int objCount = Random.Range(min, max + 1);
         for(int i = 0; i < objCount; i++)
         {
             Vector3 randPos = RandomPosition();
             GameObject tile = tileArr[Random.Range(0, tileArr.Length)];
-            Instantiate(tile, randPos, Quaternion.identity);
+            GameObject holder = Instantiate(tile, randPos, Quaternion.identity);
+            holder.transform.SetParent(boardHolder);
+
         }
+        return objCount;
     }
 
     //Almost same as LayoutObject at Random Pos, however specifically for enemies.
@@ -139,7 +143,7 @@ public class BoardManager : MonoBehaviour
     }
 
     //Code which sets up the level, some characteristics will be determined by level number.
-    public void SetUpScene(int level)
+    public int SetUpScene(int level)
     {
         BoardSetup();
         InitializeList();
@@ -147,8 +151,11 @@ public class BoardManager : MonoBehaviour
         gridPositions.RemoveAt(index);
         LayoutPits(pit);
         LayoutObjectAtRandomPos(pickUpTiles, pickUpCount.minimum, pickUpCount.maximum);
+        
         //int numEnemies = (int)Mathf.Log(level, 2f);
-        LayoutObjectAtRandomPos(enemyTiles, 2, 2);
+        int numEnemies = LayoutObjectAtRandomPos(enemyTiles, 2, 2);
+        LayoutObjectAtRandomPos(exit, 1, 1);
+        return numEnemies ;
     }
     
     public void clearLevel()
@@ -157,5 +164,6 @@ public class BoardManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        Destroy(boardHolder.gameObject);
     }
 }

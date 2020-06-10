@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7435552154484980680}
   - component: {fileID: 8526587717458718883}
   - component: {fileID: 692398138358703984}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -49,7 +49,8 @@ MonoBehaviour:
   camera: {fileID: 0}
   speed: 8
   knockback: 5
-  prefab: {fileID: 4150116677796658470, guid: 612534da3c395e545a6d84995aa9a0dc, type: 3}
+  boomerangPrefab: {fileID: 0}
+  swordPrefab: {fileID: 0}
 --- !u!50 &7435552154484980680
 Rigidbody2D:
   serializedVersion: 4

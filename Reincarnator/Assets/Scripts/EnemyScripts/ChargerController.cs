@@ -10,6 +10,7 @@ public class ChargerController : MonoBehaviour
 
     private bool charging;
     private Rigidbody2D rb2d;
+    private DropTable dropTable;
     private float timeStamp;
     private float health = 5;
     private float maxHealth = 5;
@@ -30,6 +31,7 @@ public class ChargerController : MonoBehaviour
         charging = false;
         rb2d.freezeRotation = true;
         animator = GetComponent<Animator>();
+        dropTable = GetComponent<DropTable>();
     }
 
     //Checking to see if it needs to start charging
@@ -57,7 +59,7 @@ public class ChargerController : MonoBehaviour
         {
             stopMovement();
         }
-        else if (collision.gameObject.CompareTag("Boomerang") || collision.gameObject.CompareTag("Bullets"))
+        else if (collision.gameObject.CompareTag("Boomerang") || collision.gameObject.CompareTag("Bullets") || collision.gameObject.CompareTag("Sword"))
         {
             stopMovement();
             if (health == maxHealth)
@@ -65,13 +67,28 @@ public class ChargerController : MonoBehaviour
                 hpBar.gameObject.SetActive(true);
                 hpBar.position = new Vector3(transform.localPosition.x, transform.localPosition.y - 1f, transform.localPosition.z);
             }
-            health--;
+            if (collision.gameObject.CompareTag("Bullets"))
+            {
+                health -= 1;
+            }
+            else if (collision.gameObject.CompareTag("Boomerang"))
+            {
+                health -= PlayerController.player.bDamage();
+            }
+            else
+            {
+                health -= PlayerController.player.sDamage();
+            }
             float f = health / maxHealth;
             SetSize(f);
+            Debug.Log("Health: " + health);
         }
         if (health <= 0)
         {
+            Vector3 pos = transform.position;
             Destroy(gameObject);
+            GameManager.instance.decreaseEnemiesAlive();
+            dropTable.dropTable(pos);
         }
     }
 

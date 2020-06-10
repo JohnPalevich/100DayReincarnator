@@ -16,8 +16,11 @@ public class GameManager : MonoBehaviour
     private float health;
     private float maxHealth;
     private int coins;
+    private int enemiesGE;
     private Image fade;
     private RectTransform rt;
+    private GameObject exit;
+    private int numEnemiesAlive;
     
     //Initiates the boardManager as well as the text on the screen.
     void Awake()
@@ -71,6 +74,7 @@ public class GameManager : MonoBehaviour
         "health, " + info["health"] + "\n" +
         "maxHealth, " + info["maxHealth"] + "\n"+
         "coins, " + info["coins"] + "\n" +
+        "EnemiesGE, " + info["EnemiesGE"] + "\n" +
         "day, " + level.ToString() + "\n";
 
         // Write to disk
@@ -86,10 +90,23 @@ public class GameManager : MonoBehaviour
         health = int.Parse(reader.ReadLine().Split(',')[1]);
         maxHealth = int.Parse(reader.ReadLine().Split(',')[1]);
         coins = int.Parse(reader.ReadLine().Split(',')[1]);
+        enemiesGE = int.Parse(reader.ReadLine().Split(',')[1]);
         level = int.Parse(reader.ReadLine().Split(',')[1]);
         reader.Close();
-        boardScript.SetUpScene(level);
+        numEnemiesAlive = boardScript.SetUpScene(level);
+        exit = GameObject.Find("Exit(Clone)");
+        exit.SetActive(false);
     }
+    
+    public void decreaseEnemiesAlive()
+    {
+        numEnemiesAlive--;
+        if (numEnemiesAlive <= 0)
+        {
+            exit.SetActive(true);
+        }
+    }
+
 
     public Dictionary<string, string> retrievePlayerInfo()
     {
@@ -97,6 +114,7 @@ public class GameManager : MonoBehaviour
         info.Add("health", health.ToString());
         info.Add("maxHealth", maxHealth.ToString());
         info.Add("coins", coins.ToString());
+        info.Add("EnemiesGE", enemiesGE.ToString());
         return info;
     }
 
@@ -126,6 +144,8 @@ public class GameManager : MonoBehaviour
         }
         boardScript.clearLevel();
         setUpLevel();
+        exit = GameObject.Find("Exit(Clone)");
+        exit.SetActive(false);
         unfadeMe();
         yield return null;
     }

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\EnemyScripts\ChargerController.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\DropTable.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\ProjectileController.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\ShooterController.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\TrackerController.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\MiscScripts\Rotator.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\BoomerangeController.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\SwordScript.cs" />
     <None Include="Assets\SaveData\saveData.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/John Palevich/Documents/100DayReincarnator/Reincarnator/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BoomerangeController : MonoBehaviour
 {
+    public int boomerangAtk = 1;
+    
     private GameObject player;
     
     private Rigidbody2D rb2d;
@@ -19,6 +21,8 @@ public class BoomerangeController : MonoBehaviour
     //Sets up information for the boomerang to use
     void Start()
     {
+        //PlayerController.player.setBDamage(boomerangAtk);
+
         //Tells the boomerang to not return
         returning = false;
 

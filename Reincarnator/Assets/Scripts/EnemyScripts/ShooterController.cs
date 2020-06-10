@@ -18,6 +18,7 @@ public class ShooterController : MonoBehaviour
     private Rigidbody2D rb2d;
     private float health = 3f;
     private float maxHealth = 3f;
+    private DropTable dropTable;
     void Start()
     {
         hpBar = transform.Find("HealthBar");
@@ -27,6 +28,7 @@ public class ShooterController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         timeStamp = Time.time + cooldown;
         rb2d.freezeRotation = true;
+        dropTable = GetComponent<DropTable>();
     }
 
     //Updates the timeStamp and runs away from the player if it gets too close.
@@ -61,24 +63,34 @@ public class ShooterController : MonoBehaviour
             }
         }
     }
-   
+
     //Tests to see if it collides with the players weapon.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Boomerang"))
+        if (collision.gameObject.CompareTag("Boomerang") || collision.gameObject.CompareTag("Sword"))
         {
-            if(health == maxHealth)
+            if (health == maxHealth)
             {
                 hpBar.gameObject.SetActive(true);
                 hpBar.position = new Vector3(transform.localPosition.x, transform.localPosition.y - 1f, transform.localPosition.z);
             }
-            health--;
+            if (collision.gameObject.CompareTag("Boomerang"))
+            {
+                health -= PlayerController.player.bDamage();
+            }
+            else
+            {
+                health -= PlayerController.player.sDamage();
+            }
             float f = health / maxHealth;
             SetSize(f);
         }
         if (health <= 0)
         {
+            Vector3 pos = transform.position;
             Destroy(gameObject);
+            GameManager.instance.decreaseEnemiesAlive();
+            dropTable.dropTable(pos);
         }
     }
 
@@ -97,7 +109,6 @@ public class ShooterController : MonoBehaviour
         Vector3 spawnPos = transform.position + difference;
         //Creates new bullet and sets it's parent to this object
         var myNewBullet = Instantiate(bullet, spawnPos, Quaternion.Euler(0f, 0f, 0f));
-        myNewBullet.transform.parent = gameObject.transform;
 
         //Initialized bullet's rigidbody, and gives it a direction to move in.
         Rigidbody2D rb2d = myNewBullet.GetComponent<Rigidbody2D>();

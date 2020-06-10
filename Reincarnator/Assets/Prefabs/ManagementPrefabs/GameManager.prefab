@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2083933207987149693, guid: 391ce68c349937c469cd04ccf221eed8, type: 3}
-  blackScreen: {fileID: 2313048519727709591, guid: 83ef76440cdf73848acb9c7d8cdce36a,
-    type: 3}
 --- !u!114 &1405302218186396601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,5 +95,7 @@ MonoBehaviour:
   - {fileID: 8101113464448028162, guid: 72c9e579b1cd1594bbf663adbc799a70, type: 3}
   - {fileID: 8885979458432091656, guid: 7e44669192e61064f8a0711d9a47ad04, type: 3}
   - {fileID: 1417455746851244546, guid: 77c07e4b1d6991d4d9235cfe1eeae3f9, type: 3}
+  exit:
+  - {fileID: 6810903008577473273, guid: e88c6cb3930741246a44c09f4eea4bb4, type: 3}
   pit: {fileID: 4925138994139506478, guid: d7cab963dfec97a4abc299e5eff3373c, type: 3}
   hpBar: {fileID: 6513681176821141411, guid: 46b1e30ef302766429106b8d692311ac, type: 3}
