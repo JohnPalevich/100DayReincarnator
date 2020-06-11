@@ -1,5 +1,5 @@
-health, 24
+health, 54
 maxHealth, 100
-coins, 179
+coins, 273
 EnemiesGE, 0
 day, 1

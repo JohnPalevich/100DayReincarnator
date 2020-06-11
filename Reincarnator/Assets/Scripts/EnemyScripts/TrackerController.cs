@@ -11,8 +11,8 @@ public class TrackerController : MonoBehaviour
     private DropTable dropTable;
 
     private Vector2 force;
-    private float health = 5;
-    private float maxHealth = 5;
+    public float health;
+    public float maxHealth;
     private Transform bar;
     private Transform hpBar;
 

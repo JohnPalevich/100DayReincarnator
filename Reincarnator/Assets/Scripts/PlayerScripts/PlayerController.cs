@@ -178,19 +178,43 @@ public class PlayerController : MonoBehaviour
         Vector3 difference = new Vector3(transform.position.x - mousePos.x, transform.position.y - mousePos.y, 0) * -1;
         difference.Normalize();
         Vector3 spawnPos = transform.position + (difference * 1.3f);
-        if(spawnPos.x > transform.position.x)
+        float xDiff = spawnPos.x - transform.position.x;
+        float yDiff = spawnPos.y - transform.position.y;
+        if(System.Math.Abs(yDiff) > System.Math.Abs(xDiff))
         {
-            spawnPos = new Vector3(transform.position.x + 1f, transform.position.y);
-            sword = Instantiate(swordPrefab, spawnPos, Quaternion.identity);
+            if (yDiff > 0)
+            {
+                spawnPos = new Vector3(transform.position.x, transform.position.y + 1f);
+                sword = Instantiate(swordPrefab, spawnPos, Quaternion.identity);
+                sword.transform.Rotate(new Vector3(0, 0, 90));
+            }
+            else
+            {
+                spawnPos = new Vector3(transform.position.x, transform.position.y - 1f);
+                sword = Instantiate(swordPrefab, spawnPos, Quaternion.identity);
+                Vector3 newScale = sword.transform.localScale;
+                newScale.x *= -1;
+                sword.transform.localScale = newScale;
+                sword.transform.Rotate(new Vector3(0, 0, 90));
+            }
         }
         else
         {
-            spawnPos = new Vector3(transform.position.x - 1f, transform.position.y);
-            sword = Instantiate(swordPrefab, spawnPos, Quaternion.identity);
-            Vector3 newScale = sword.transform.localScale;
-            newScale.x *= -1;
-            sword.transform.localScale = newScale;
+            if (xDiff > 0)
+            {
+                spawnPos = new Vector3(transform.position.x + 1f, transform.position.y);
+                sword = Instantiate(swordPrefab, spawnPos, Quaternion.identity);
+            }
+            else
+            {
+                spawnPos = new Vector3(transform.position.x - 1f, transform.position.y);
+                sword = Instantiate(swordPrefab, spawnPos, Quaternion.identity);
+                Vector3 newScale = sword.transform.localScale;
+                newScale.x *= -1;
+                sword.transform.localScale = newScale;
+            }
         }
+        
         sword.transform.parent = transform;
         swung = true;
     }

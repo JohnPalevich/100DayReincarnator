@@ -103,8 +103,14 @@ public class GameManager : MonoBehaviour
         numEnemiesAlive--;
         if (numEnemiesAlive <= 0)
         {
+            //exit = GameObject.Find("Exit(Clone)");
             exit.SetActive(true);
         }
+    }
+
+    public void increasEnemiesAlive()
+    {
+        numEnemiesAlive++;
     }
 
 
@@ -144,14 +150,15 @@ public class GameManager : MonoBehaviour
         }
         boardScript.clearLevel();
         setUpLevel();
-        exit = GameObject.Find("Exit(Clone)");
-        exit.SetActive(false);
         unfadeMe();
         yield return null;
     }
 
     IEnumerator undoFade()
     {
+
+        exit = GameObject.Find("Exit(Clone)");
+        exit.SetActive(false);
         float alpha = fade.color.a;
         while (alpha > 0)
         {
@@ -165,11 +172,5 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         yield return null;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

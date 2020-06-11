@@ -63,8 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PointAtPlayer.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\ChargerController.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\DropTable.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\EggController.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\ProjectileController.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\ShooterController.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\TrackerController.cs" />
