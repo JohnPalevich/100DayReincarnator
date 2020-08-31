@@ -10,7 +10,7 @@
 6. Once open, you will be able to hit the black triangle or "play" button which will allow you to play
 
 # Status
-The game is written in C# using Unity. Currently it is still in development. By the end of summer 2020, I would like to have it published to the Steam store.
+The game is written in C# using Unity. Currently this project is put on hold as I enter college this fall.
 
 # Randomized Levels
 Each combat level is randomly generated with enemies, coins, and pits. 
